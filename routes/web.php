@@ -16,9 +16,10 @@ use App\Http\Controllers\HomeController;
 */
 
 
-// back-end
+// ==========================================back-end=======================================
 Route::get('/admin', [Admincontroller::class, "index"])->name('admin.index');
-// front-end
+Route::get('/dashboard', [Admincontroller::class, "dashboard"])->name('admin.index');
+// ==========================================front-end=======================================
 Route::get('/home', [HomeController::class, "index"])->name('client.home');
 Route::get('/', [HomeController::class, "index"])->name('client.home');
 
