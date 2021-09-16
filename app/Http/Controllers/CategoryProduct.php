@@ -2,12 +2,15 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Session;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Session;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
-use App\Models\Category;
+use App\Http\Requests\CategoryProduct\ValidateSaveRequest;
+use App\Http\Requests\CategoryProduct\ValidateUpdateRequest;
+
 session_start();
 
 class CategoryProduct extends Controller
@@ -21,7 +24,7 @@ class CategoryProduct extends Controller
     public function add_category(){// view Add category
         return view('admin.category.add_category');
     }
-    public function save_category(Request $request){// save category
+    public function save_category(Request $request, ValidateSaveRequest $validate){// save category
         $data = $request->all();
         $category = new Category();
         $category->category_name = $data['category_name'];
@@ -50,7 +53,7 @@ class CategoryProduct extends Controller
         return view('admin.category.edit_category')->with(compact('category'));
     }
 
-    public function update_category(Request $request,$category_id ){// update category
+    public function update_category(Request $request,$category_id,ValidateUpdateRequest $validate ){// update category
 
         $data = $request->all();
         $category =  Category::find($category_id);

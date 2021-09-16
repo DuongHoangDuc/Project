@@ -43,12 +43,18 @@
                                     <label class="title_product" for="">Tên danh mục</label>
                                     <input type="text" name="product_name" class="title_product form-control" id="">
                                 </div>
+                                @error('product_name')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="title_product" for="">Giá Sản Phẩm </label>
                                     <input type="text" name="product_price" class=" title_product form-control" id="">
                                 </div>
+                                @error('product_price')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
@@ -60,6 +66,9 @@
                                     @endforeach
                                     </select>
                                 </div>
+                                @error('category_id')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                             </div>
                                 <div class="col-md-6">
                                 <div class="mb-3">
@@ -71,12 +80,18 @@
                                     @endforeach
                                     </select>
                                 </div>
+                                @error('brand_id')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="title_product" for="">Giá khuyến Mãi </label>
                                     <input type="text" name="product_sales" class=" title_product form-control" id="">
                                 </div>
+                                @error('product_sales')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                             </div>
                             <div class="col-md-6" id="add-image-file">
                                 <div class="mb-3">
@@ -88,21 +103,30 @@
                                             onchange="readURL(this);" id="images" multiple="multiple">
                                         <label class="custom-file-label" for="images">Choose image</label>
                                     </div>
+                                @error('product_images')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                                 </div>
                             </div>
                             <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class=" title_product ">Mô tả dài</label>
-                                    <textarea name="product_content" class="form-control" id="long_des" cols="30"
+                                    <textarea name="product_content" class="form-control" id="ckeditor_content" cols="30"
                                         rows="10"></textarea>
                                 </div>
+                                @error('product_content')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                             </div>
                               <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class=" title_product ">Mô tả ngắn</label>
-                                    <textarea name="product_desc" class="form-control" id="long_des" cols="30"
-                                        rows="10"></textarea>
+                                    <textarea name="product_desc" class="form-control" id="ckeditor_desc" cols="0"
+                                        rows="0"></textarea>
                                 </div>
+                                 @error('product_desc')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                             </div>
 
                             <div class="col-md-12">

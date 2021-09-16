@@ -43,6 +43,9 @@
                                     <label for="">Tên danh mục</label>
                                     <input type="text" value = "{{ $category->category_name }}" name="category_name" class="form-control" id="">
                                 </div>
+                                 @error('category_name')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                             </div>
                             <div class="col-md-6" id="add-image-file">
                                 <div class="mb-3">
@@ -56,6 +59,9 @@
                                     </div>
                                     <img width = "70px" src="{{ asset ('uploads/category/'.$category->category_images) }}"> 
                                 </div>
+                                    @error('category_images')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                     @enderror
                             </div>
                             <div class="col-md-12">
                                 <div class="mb-3">

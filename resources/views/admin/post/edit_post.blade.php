@@ -43,7 +43,7 @@
                                     <label class="title_product" for="">Tên bài Viết</label>
                                     <input type="text" value = "{{ $post->post_title }}" name="post_title" class="title_product form-control" id="">
                                     @error('post_title')
-                                        <span class="text-danger" > {{ $message }} </span>
+                                        <span class="erorr text-danger" > {{ $message }} </span>
                                     @enderror
                                     
                                 </div>
@@ -52,6 +52,9 @@
                                 <div class="mb-3">
                                     <label class="title_product" for="">slug </label>
                                     <input type="text" value = "{{ $post->post_slug }}" name="post_slug" class=" title_product form-control" id="">
+                                    @error('post_slug')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                    @enderror
                                 </div>
                             </div>
                                 <div class="col-md-6">
@@ -63,6 +66,9 @@
                                           <option {{ $post->category_post_id ==$cate->category_post_id ? 'selected' : ''; }} value = "{{ $cate->category_post_id }}"> {{ $cate->category_post_name }}</option>
                                     @endforeach
                                     </select>
+                                    @error('category_post_id')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6" id="add-image-file">
@@ -77,34 +83,49 @@
                                     </div>
                                     <img width = "70px" src="{{ asset ('uploads/post/'.$post->post_images) }}"> 
                                 </div>
+                                   @error('post_images')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                    @enderror
                             </div>
                             <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class=" title_product ">Nội dung Bài Viết</label>
-                                    <textarea name="post_content" class="form-control" id="long_des" cols="30"
+                                    <textarea name="post_content" class="form-control" id="ckeditor_content" cols="30"
                                         rows="10">{{ $post->post_content }}</textarea>
                                 </div>
+                                  @error('post_content')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                             </div>
                               <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class=" title_product ">Tóm Tắt Bài Viết</label>
-                                    <textarea name="post_desc" class="form-control" id="long_des" cols="30"
+                                    <textarea name="post_desc" class="form-control" id="ckeditor_desc" cols="30"
                                         rows="10">{{ $post->post_desc }}</textarea>
                                 </div>
+                                @error('post_desc')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                             </div>
                                <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class=" title_product ">Meta Từ Khóa</label>
-                                    <textarea name="post_keywords" class="form-control" id="long_des" cols="30"
+                                    <textarea name="post_keywords" class="form-control" id="ckeditor_keywords" cols="30"
                                         rows="10">{{ $post->post_keywords }}</textarea>
                                 </div>
+                                @error('post_keywords')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                             </div>
                                  <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class=" title_product ">Meta nộ dung</label>
-                                    <textarea name="post_meta_desc" class="form-control" id="long_des" cols="30"
+                                    <textarea name="post_meta_desc" class="form-control" id="ckeditor_meta" cols="30"
                                         rows="10">{{ $post->post_meta_desc }}</textarea>
                                 </div>
+                                @error('post_meta_desc')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                             </div>
                             <div class="col-md-12">
                                 <div class="mb-3">

@@ -42,12 +42,18 @@
                                     <label class="title_product" for="">Tên danh mục</label>
                                     <input type="text" value ="{{ $product->product_name }}" name="product_name" class="title_product form-control" id="">
                                 </div>
+                                @error('product_name')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
                                     <label class="title_product" for="">Giá Sản Phẩm </label>
                                     <input type="text" value ="{{ $product->product_price }}" name="product_price" class=" title_product form-control" id="">
                                 </div>
+                                 @error('product_price')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                             </div>
                             <div class="col-md-6">
                                 <div class="mb-3">
@@ -57,6 +63,9 @@
                                           <option  {{ $product->category_id == $cate->category_id ? 'selected' : '' }} value = "{{ $cate->category_id }}" > {{ $cate->category_name }}</option>
                                     @endforeach
                                     </select>
+                                     @error('category_id')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                    @enderror
                                 </div>
                             </div>
                                 <div class="col-md-6">
@@ -67,6 +76,9 @@
                                           <option {{ $product->brand_id == $bra->brand_id ? 'selected' : '' }} value = "{{ $bra->brand_id }}"> {{ $bra->brand_name }}</option>
                                     @endforeach
                                     </select>
+                                     @error('brand_id')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                    @enderror
                                 </div>
                             </div>
                             <div class="col-md-6">
@@ -74,6 +86,9 @@
                                     <label class="title_product" for="">Giá khuyến Mãi </label>
                                     <input type="text" value ="{{ $product->product_sales }}" name="product_sales" class=" title_product form-control" id="">
                                 </div>
+                                @error('product_sales')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                             </div>
                             <div class="col-md-6" id="add-image-file">
                                 <div class="mb-3">
@@ -87,20 +102,29 @@
                                     </div>
                                      <img width = "70px" src="{{ asset ('uploads/products/'.$product->product_images) }}"> 
                                 </div>
+                                @error('product_images')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                             </div>
                             <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class=" title_product ">Mô tả dài</label>
-                                    <textarea name="product_content" class="form-control" id="long_des" cols="30"
+                                    <textarea name="product_content" class="form-control" id="ckeditor_content" cols="30"
                                         rows="10">{{ $product->product_content }}</textarea>
                                 </div>
+                                @error('product_content')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                             </div>
                               <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class=" title_product ">Mô tả ngắn</label>
-                                    <textarea name="product_desc" class="form-control" id="long_des" cols="30"
+                                    <textarea name="product_desc" class="form-control" id="ckeditor_desc" cols="30"
                                         rows="10">{{ $product->product_desc }}</textarea>
                                 </div>
+                                @error('product_desc')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                             </div>
 
                             <div class="col-md-12">

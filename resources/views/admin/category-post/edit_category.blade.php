@@ -43,18 +43,27 @@
                                     <label for="">Tên Thương Hiệu</label>
                                     <input type="text" value = "{{ $category->category_post_name }}" name="category_post_name" class="form-control" id="">
                                 </div>
+                                @error('category_post_name')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                             </div>
                              <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="">đường dẫn</label>
                                     <input type="text" value = "{{ $category->category_post_slug }}" name="category_post_slug" class="form-control" id="">
                                 </div>
+                                @error('category_post_slug')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                             </div>
                               <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class=" title_product ">Mô tả dài Danh Mục Bài Viết</label>
-                                    <textarea name="category_post_desc" class="form-control" id="long_des" cols="30" rows="10">{{ $category->category_post_desc }}</textarea>
+                                    <textarea name="category_post_desc" class="form-control" id="ckeditor_desc" cols="30" rows="10">{{ $category->category_post_desc }}</textarea>
                                 </div>
+                                @error('category_post_desc')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                             </div>
                             <div class="col-md-12">
                                 <div class="mb-3">

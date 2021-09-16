@@ -43,12 +43,18 @@
                                     <label for="">Tên Thương Hiệu</label>
                                     <input type="text" value = "{{ $brand->brand_name }}" name="brand_name" class="form-control" id="">
                                 </div>
+                                @error('brand_name')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                             </div>
                              <div class="col-md-6">
                                 <div class="mb-3">
                                     <label for="">đường dẫn</label>
                                     <input type="text" value = "{{ $brand->brand_slug }}" name="brand_slug" class="form-control" id="">
                                 </div>
+                                @error('brand_slug')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                             </div>
                             <div class="col-md-12">
                                 <div class="mb-3">

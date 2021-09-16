@@ -43,18 +43,27 @@
                                     <label class=" title_product " for="">Tên Danh Mục bài Viết</label>
                                     <input type="text" name="category_post_name" class="form-control" id="">
                                 </div>
+                                @error('category_post_name')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                             </div>
                              <div class="col-md-6">
                                 <div class="mb-3">
                                     <label  class=" title_product " for="">đường dẫn</label>
                                     <input type="text" name="category_post_slug" class="form-control" id="">
                                 </div>
+                                @error('category_post_slug')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                             </div>
                             <div class="col-md-12">
                                 <div class="mb-3">
                                     <label class=" title_product ">Mô tả dài Danh Mục Bài Viết</label>
-                                    <textarea name="category_post_desc" class="form-control" id="long_des" cols="30" rows="10"></textarea>
+                                    <textarea name="category_post_desc" class="form-control" id="ckeditor_desc" cols="30" rows="10"></textarea>
                                 </div>
+                                @error('category_post_desc')
+                                        <span class="erorr text-danger" > {{ $message }} </span>
+                                @enderror
                             </div>
                             <div class="col-md-12">
                                 <div class="mb-3">

@@ -24,6 +24,15 @@
     <script src="{{ asset ('backend/assets/libs/flot/jquery.flot.crosshair.js') }}"></script>
     <script src="{{ asset ('backend/assets/libs/flot.tooltip/js/jquery.flot.tooltip.min.js') }}"></script>
     <script src="{{ asset ('backend/dist/js/pages/chart/chart-page-init.js') }}"></script>
+    {{-- ================================== CK editor================================= --}}
+      <script src="{{ asset ('backend/ckeditor/ckeditor/ckeditor.js') }}"></script>
+      <script>
+      CKEDITOR.replace('ckeditor_desc');
+      CKEDITOR.replace('ckeditor_content');
+      CKEDITOR.replace('ckeditor_keywords');
+      CKEDITOR.replace('ckeditor_meta');
+      
+      </script>
 
 </body>
 

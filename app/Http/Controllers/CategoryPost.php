@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Session;
+use App\Models\PostCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Session;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
-use App\Models\PostCategory;
+use App\Http\Requests\CategoryPost\ValidateSaveRequest;
+use App\Http\Requests\CategoryPost\validateUpdateRequest;
 session_start();
 
 class CategoryPost extends Controller
@@ -22,7 +24,7 @@ class CategoryPost extends Controller
     public function add_category(){// view Add brand
         return view('admin.category-post.add_category');
     }
-    public function save_category(Request $request){// save brand
+    public function save_category(Request $request, ValidateSaveRequest $validate){// save brand
         $data = $request->all();
         $category = new PostCategory();
         $category->category_post_name = $data['category_post_name'];
@@ -40,7 +42,7 @@ class CategoryPost extends Controller
         return view('admin.category-post.edit_category')->with(compact('category'));
     }
 
-    public function update_category(Request $request,$category_id ){// update brand
+    public function update_category(Request $request,$category_id,validateUpdateRequest $validate ){// update brand
 
         $data = $request->all();
         $category =  PostCategory::find($category_id);

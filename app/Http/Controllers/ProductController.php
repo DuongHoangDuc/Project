@@ -2,14 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Session;
+use App\Models\brand;
+use App\Models\product;
+use App\Models\category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Session;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
-use App\Models\product;
-use App\Models\brand;
-use App\Models\category;
+use App\Http\Requests\Product\ValidateUpdateRequest;
+use App\Http\Requests\Product\ValidateSaveRequest;
 session_start();
 
 class ProductController extends Controller
@@ -25,7 +27,7 @@ class ProductController extends Controller
         $category = category::orderby('category_id')->get();
         return view('admin.product.add_product')->with(compact('brand'))->with(compact('category'));
     }
-    public function save_product(Request $request){// save category
+    public function save_product(Request $request , ValidateSaveRequest $validate  ){// save category
         $data = $request->all();
         $product = new product();
         $product->product_name = $data['product_name'];
@@ -37,22 +39,20 @@ class ProductController extends Controller
         $product->product_desc = $data['product_desc'];
         $product->product_status = '0';
         $product->product_hot = '0';
-        $get_images = $request->file('product_images');
 
-        if($get_images){
+        if($request->has('product_images')){
+
+            $get_images = $request->file('product_images');      
             $get_name_images = $get_images->getClientOriginalName();// lấy tên ảnh
             $name_image      = current(explode('.',$get_name_images));
             $new_image       = $name_image.rand(0,99).'.'.$get_images->getClientOriginalExtension();
             $get_images->move('uploads/products',$new_image);
             $product->product_images = $new_image;
+        }
             $product->save();
-
             Session::put('message','Thêm Sản Phẩm Thành Công');
             return Redirect('/product');
-        }else{
-            Session::put('message','Phải Sản Phẩm Thành Công');
-            return Redirect('/product');
-        }
+        
        
     }
 
@@ -63,7 +63,7 @@ class ProductController extends Controller
         return view('admin.product.edit_product')->with(compact('product'))->with(compact('brand'))->with(compact('category'));
     }
 
-    public function update_product(Request $request,$product_id ){// update category
+    public function update_product(Request $request,$product_id, ValidateUpdateRequest $validate ){// update category
         $data = $request->all();
         $product =  product::find($product_id);
         $product->product_name = $data['product_name'];

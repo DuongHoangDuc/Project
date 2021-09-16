@@ -9,7 +9,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
-use App\Http\Requests\ValidatePostRequest;
+use App\Http\Requests\Post\ValidateSaveRequest;
+use App\Http\Requests\Post\ValidateUpdateRequest;
 session_start();
 
 class PostController extends Controller
@@ -24,7 +25,7 @@ class PostController extends Controller
         $category = PostCategory::orderby('category_post_id')->get();
         return view('admin.post.add_post')->with(compact('category'));
     }
-    public function save_post(Request $request, ValidatePostRequest $validate){// save category
+    public function save_post(Request $request, ValidateSaveRequest $validate){// save category
         $data = $request->all();
         $post = new Post();
         $post->post_title = $data['post_title'];
@@ -61,7 +62,7 @@ class PostController extends Controller
         return view('admin.post.edit_post')->with(compact('post'))->with(compact('category'));
     }
 
-    public function update_post(Request $request,$post_id ){// update category
+    public function update_post(Request $request,$post_id , ValidateUpdateRequest $validate ){// update category
         $data = $request->all();
         $post =  Post::find($post_id);
         $post->post_title = $data['post_title'];

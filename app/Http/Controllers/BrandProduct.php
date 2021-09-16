@@ -2,12 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use Session;
+use App\Models\brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Session;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Redirect;
-use App\Models\brand;
+use App\Http\Requests\Brand\ValidateSaveRequest;
+use App\Http\Requests\Brand\ValidateUpdateRequest;
 session_start();
 
 
@@ -22,7 +24,7 @@ class BrandProduct extends Controller
     public function add_brand(){// view Add brand
         return view('admin.brand.add_brand');
     }
-    public function save_brand(Request $request){// save brand
+    public function save_brand(Request $request ,ValidateSaveRequest $validate){// save brand
         $data = $request->all();
         $brand = new brand();
         $brand->brand_name = $data['brand_name'];
@@ -38,7 +40,7 @@ class BrandProduct extends Controller
         return view('admin.brand.edit_brand')->with(compact('brand'));
     }
 
-    public function update_brand(Request $request,$brand_id ){// update brand
+    public function update_brand(Request $request,$brand_id ,ValidateUpdateRequest $validate){// update brand
 
         $data = $request->all();
         $brand =  brand::find($brand_id);
